@@ -1,0 +1,82 @@
+# Задача 1: Найдите сумму цифр трехзначного числа.
+'''123 -> 6 (1 + 2 + 3)
+100 -> 1 (1 + 0 + 0)'''
+
+def my_sum():
+    input_number = int(input('Введите трехзначное число: '))
+    list_number = []
+    for el in str(input_number):
+        list_number.append(int(el))
+    my_result_sum = sum(list_number)
+    print(f'Сумма чисел трехзначного числа {input_number} -> {str(input_number)[0]} + {str(input_number)[1]} + {str(input_number)[2]} = {my_result_sum}')
+
+my_sum()
+
+
+
+# Задача 2: Петя, Катя и Сережа делают из бумаги журавликов. Вместе они сделали S журавликов. Сколько 
+# журавликов сделал каждый ребенок, если известно, что Петя и Сережа сделали одинаковое 
+# количество журавликов, а Катя сделала в два раза больше журавликов, чем Петя и Сережа вместе?
+'''6 -> 1  4  1
+24 -> 4  16  4
+60 -> 10  40  10'''
+
+# crane - журавлик
+def crane():
+    all_crane_value = int(input('Введите общее количество сделанных журавликов: '))
+    Katya_value = int(all_crane_value / 3 * 2)
+    Petya_value = int(Katya_value / 4)
+    Sergey_value = int(Petya_value)
+    print(f'Всего сделано {all_crane_value} журавликов \n \
+          Катя сделала {Katya_value} журавликов\n \
+          Сережа сделал {Sergey_value} журавликов\n \
+          Петя сделал {Petya_value} журавликов')
+    
+crane()
+    
+
+# Задача 3: Вы пользуетесь общественным транспортом? Вероятно, вы расплачивались за проезд и
+#  получали билет с номером. Счастливым билетом называют такой билет с шестизначным номером, 
+# где сумма первых трех цифр равна сумме последних трех. Т.е. билет с номером 385916 – счастливый, 
+# т.к. 3+8+5=9+1+6. Вам требуется написать программу, которая проверяет счастливость билета.
+'''385916 -> yes
+123456 -> no'''
+
+def happy_ticket():
+    a = input('Введите шестизначный номер билета: ')
+    first_list = []
+    second_list = []
+    for el in a[:3]:
+        first_list.append(int(el))
+    for el in a[3:]:
+        second_list.append(int(el))
+    answer = None
+    if sum(first_list) == sum(second_list):
+        answer = 'Счастливый'
+    else:
+        answer = 'Не счастливый'
+    print(f'Номер билета = {a}, сумма первой его части ({first_list}) = {sum(first_list)} \n \
+          сумма второй его части ({second_list}) = {sum(second_list)}\n \
+          Билет - {answer}')
+
+happy_ticket()
+
+# Задача 4: Требуется определить, можно ли от шоколадки размером n × m долек 
+# отломить k долек, если разрешается сделать один разлом по прямой между дольками 
+# (то есть разломить шоколадку на два прямоугольника).
+'''3 2 4 -> yes
+3 2 1 -> no'''
+
+def choco_cells():
+    n = int(input('Введите количество n долек в шоколадке : '))
+    m = int(input('Введите количество m долек в шоколадке : '))
+    cut_choco = int(input('Введите сколько долек вы хотите отломить: '))
+    all_choco = n * m
+    answer = ''
+    if (all_choco - cut_choco) % 2 == 0 and cut_choco < all_choco:
+        answer = 'Yes'
+    else:
+        answer = 'NO'
+    print(answer)
+
+choco_cells()
