@@ -1,0 +1,81 @@
+import random
+'''
+На столе лежат n монеток. Некоторые из них лежат вверх решкой, а некоторые – гербом. 
+Определите минимальное число монеток, которые нужно перевернуть, чтобы все монетки 
+были повернуты вверх одной и той же стороной. Выведите минимальное количество монет, 
+которые нужно перевернуть.
+Пример:
+5 -> 1 0 1 1 0
+'''
+
+def coin():
+    count_coin = int(input('Введите кол-во монеток на столе: '))
+    list_coin = []
+    count = 0
+    while count < count_coin:
+        answer = int(input('Если монета лежит решкой введите "1", если гербом введите "0" \n Введите "1" или "0": '))
+        list_coin.append(answer)
+        count += 1
+    print(list_coin)
+    reshka = list_coin.count(1)
+    orel = list_coin.count(0)
+    print(f'Количество монет, лежащих решкой = {reshka}')
+    print(f'Количество монет, лежащих орлом = {orel}')
+    min_change_coin = ''
+    if reshka < orel:
+        min_change_coin = reshka
+    else:
+        min_change_coin = orel
+    print(f'Минимальное кол-во монет для переворота = {min_change_coin}')
+
+coin()
+'''
+Петя и Катя – брат и сестра. Петя – студент, а Катя – школьница. Петя помогает Кате по математике. 
+Он задумывает два натуральных числа X и Y (X,Y≤1000), а Катя должна их отгадать. 
+Для этого Петя делает две подсказки. Он называет сумму этих чисел S и их произведение P. 
+Помогите Кате отгадать задуманные Петей числа.
+Пример:
+4 4 -> 2 2
+5 6 -> 2
+'''
+
+def gues_two_numbers():
+    petya_1 = random.randint(0,100)
+    petya_2 = random.randint(0,100)
+
+    petya_sum = petya_1 + petya_1
+    petya_multi = petya_2 * petya_2
+
+    print(f'Сумма загадонного числа = {petya_sum}, произведение второго загаданного числа = {petya_multi}')
+
+    answer_1 = None
+    answer_2 = None
+
+    while answer_1 != petya_1:
+        answer_1 = int(input(f'Сумма чисел равна {petya_sum}. Отгадай и введи число: '))
+        if answer_1 != petya_1:
+            print('Не верно! Введи еще раз: ')
+    print('Отгадал!')
+
+    while answer_2 != petya_2:
+        answer_2 = int(input(f'Произведение чисел равно {petya_multi}. Отгадай и введи число: '))
+        if answer_2 != petya_2:
+            print('Не верно! Введи еще раз: ')
+    print('Отгадал!')
+
+gues_two_numbers()
+
+'''
+Требуется вывести все целые степени двойки (т.е. числа вида 2k), не превосходящие числа N.
+Пример:
+10 -> 1 2 4 8
+'''
+
+def task_3():
+    n = int(input("Введите число: "))
+    m = 1
+    while m < n:
+        print(m, end = ' ')
+        m = m * 2
+
+task_3()
