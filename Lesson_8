@@ -1,0 +1,165 @@
+'''Создать телефонный справочник с
+возможностью импорта и экспорта данных в
+формате .txt. Фамилия, имя, отчество, номер
+телефона - данные, которые должны находиться
+в файле.
+1. Программа должна выводить данные
+2. Программа должна сохранять данные в
+текстовом файле
+3. Пользователь может ввести одну из
+характеристик для поиска определенной
+записи(Например имя или фамилию
+человека)
+4. Использование функций. Ваша программа
+не должна быть линейной'''
+
+
+'''
+дз
+ДОПОЛНИТЬ ФУНКЦИОНАЛ УДАЛЕНИЕМ И ИЗМЕНЕНИЕМ
+'''
+
+# text_file = 'phone_numbers.txt'
+# with open('phone_numbers.txt', 'r',encoding='UTF-8') as f:
+# #     for line in f.read().split('\n'):
+# #         print(line)
+#     print(f.read())
+
+def read_my_file(file_name):
+    with open(file_name, 'r', encoding='UTF-8') as f:
+        print(f.read())
+
+
+
+def save_in_my_file(file_name, text):
+    txt = ''
+    with open(file_name, 'a+', encoding='UTF-8') as f:
+        f.write('\n' + text)
+        txt = f.read()
+    print(txt)
+    
+    # with open(file_name, 'a+', encoding='UTF-8') as f:
+    # for i in string:
+    # if not i.isspace():
+    #     print(i.replace('\n', ''))
+
+
+        
+
+
+def find_info(file_name, part, find_text):
+    with open(file_name, 'r', encoding='UTF-8') as f:
+        qwe = f.read()
+        tmp = []
+        for line in qwe.split('\n'):
+            tmp.append(line.split())
+        for row in tmp:
+            for word in row:
+                if word[part] == find_text:
+                    print(f'Информация по вашему запросу: {row}')
+
+
+def find_info(file_name, part, find_text):
+    '''
+    в значении part
+    0 - фамилия
+    1 - имя
+    2 - отчество
+    3 - телефон
+    '''
+    with open(file_name, 'r', encoding='UTF-8') as f:
+        qwe = f.read()
+        tmp = []
+        find = False
+        [tmp.append(line.split()) for line in qwe.split('\n')]
+        for row in tmp:
+            if row[part] == find_text:
+                print(f'Информация по вашему запросу \nФамилия:{row[0]}\nИмя:{row[1]}\n\
+Отчество:{row[2]}\nТелефон:{row[3]}')
+                find = True
+        if find == False:
+            print('По вашему запросу ничего не найдено')
+
+
+
+def del_info(file_name, part, find_text):
+    '''
+    в значении part
+    0 - фамилия
+    1 - имя
+    2 - отчество
+    3 - телефон
+    '''
+    need_del = ''
+    find = False
+    with open(file_name, 'r', encoding='UTF-8') as f:
+        qwe = f.read()
+        tmp = []
+        [tmp.append(line.split()) for line in qwe.split('\n')]
+        for row in tmp:
+            if row[part] == find_text:
+                need_del = ' '.join(row)
+                find = True
+
+    text = qwe
+    with open(file_name, 'w', encoding='UTF-8') as f:
+        for line in text.split('\n'):
+            if not line in need_del:
+                f.write(line + '\n')
+    if find == False:
+            print('По вашему запросу ничего не найдено')
+    else:
+        print(f'Строка "{need_del}" удалена')
+
+
+
+
+def change_file(file_name, part, find_text, new_text):
+    '''
+    в значении part
+    0 - фамилия
+    1 - имя
+    2 - отчество
+    3 - телефон
+    '''
+
+    need_change = ''
+    find = False
+    with open(file_name, 'r', encoding='UTF-8') as f:
+        qwe = f.read()
+        tmp = []
+        [tmp.append(line.split()) for line in qwe.split('\n')]
+        for row in tmp:
+            if row[part] == find_text:
+                need_change = ' '.join(row)
+                find = True
+
+    text = qwe
+
+    with open(file_name, 'w', encoding='UTF-8') as f:
+        for line in text.split('\n'):
+            if line in need_change:
+                f.write(line.replace(need_change,new_text + '\n'))
+            else:
+                f.write(line + '\n')
+    if find == False:
+        print('По вашему запросу ничего не найдено')
+    else:
+        print(f'Строка "{need_change}" изменена')
+            
+
+
+
+
+
+
+text_file = 'phone_numbers.txt'
+
+read_my_file(text_file)
+save_in_my_file(text_file, 'Казарин Иван Львович 433')
+read_my_file(text_file)
+find_info(text_file,1,'Мягков')
+find_info(text_file,1,'Иванов')
+del_info(text_file, 0 ,'Мягков')
+change_file(text_file,0,'Иванов', 'Ivanov Petr Alexeevich 765343')
+
